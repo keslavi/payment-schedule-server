@@ -1,37 +1,21 @@
- 'use strict';
-const Koa     = require('koa'),
-     send    = require('koa-send'),
-     router  = require('koa-router')(),
-     serve   = require('koa-static');
+var express = require('express');
+var logger = require('morgan');
+var http = require('http');
+//var config= require ('./config/main');
+var router = express.Router();
+var path = require('path');
 
-let app = new Koa();
-// serve files in public folder (css, js etc)
-app.use(serve(__dirname + '/public'));
+//var users = require('./routes/users');
+var port = process.env.PORT || '5000';
 
-// rest endpoints
-router.get('/api/whatever', function *(){
-  this.body = 'hi from get';
-});
-router.post('/api/whatever', function *(){
-  this.body = 'hi from post'
-});
+var app = express();
+app.set('port', port);
+app.use (logger('dev'));
 
-app.use(router.routes());
+app.use(express.static('public'));
+app.get('/api', (req, res) => res.json({message:'hello world'}));
 
-// this last middleware catches any request that isn't handled by
-// koa-static or koa-router, ie your index.html in your example
-// app.use(function* index() {
-//   yield send(this, __dirname + '/index.html');
-// });
+var server = http.createServer(app);
+server.listen(port);
 
-// app.listen(4000);
-
-//const Koa = require('koa');
-
-app.use (async ctx=> {
-  ctx.body='Hello World';
-});
-
-app.listen(3000);
-console.log('listening..................');
 

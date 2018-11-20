@@ -19,12 +19,15 @@
   },
   "homepage": "https://github.com/keslavi/payment-schedule-server#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "co-body": "^6.0.0",
+    "express": "^4.16.4",
     "koa": "^2.6.2",
     "koa-basic-auth": "^3.0.0",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-send": "^5.0.0",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "morgan": "^1.9.1"
   }
 }
